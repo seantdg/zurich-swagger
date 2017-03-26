@@ -19,6 +19,12 @@ paths:
       summary: Get Television Series
       description: |
         Get a list of available television series
+      parameters:
+        - name: releaseYear
+          in: query
+          description: Year of original release
+          required: true
+          type: string
       tags:
         - Series
       responses:
