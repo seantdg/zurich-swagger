@@ -1,0 +1,64 @@
+swagger: '2.0'
+info:
+  title: Television Catalogue API
+  description: This API can be used to view the metadata for available television shows.
+  version: "1.0.0"
+# the domain of the service
+host: api.seantv.com
+# array of all schemes that your API supports
+schemes:
+  - http
+  - https
+# will be prefixed to all paths
+basePath: /catalogue/v1
+produces:
+  - application/json
+paths:
+  /series:
+    get:
+      summary: Get Television Series
+      description: |
+        Get a list of available television series
+      tags:
+        - Series
+      responses:
+        200:
+          description: List of available series
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Series'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Series:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Series name
+      rating:
+        type: string
+        description: Average rating
+      totalEpisodes:
+        type: number
+        description: Total number of episodes released
+      yearReleased:
+        type: string
+        description: The year the first series was released
+      viewUrl:
+        type: string
+        description: Watch this video by following the link
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      url:
+        type: string
+
